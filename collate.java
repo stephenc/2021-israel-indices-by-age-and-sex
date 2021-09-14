@@ -81,38 +81,38 @@ public class collate {
                                     row.age_group = section;
                                     row.period = decodePeriods.getOrDefault(period, period);
                                     table.add(row);
-                                    infected.ifPresent(d -> d.data.stream()
-                                            .filter(x -> x.section.equals(section) && x.period.equals(period)).findFirst()
-                                            .ifPresent(r -> {
-                                                row.infected_female_amount = r.female.amount;
-                                                row.infected_female_percent = r.female.percentage;
-                                                row.infected_male_amount = r.male.amount;
-                                                row.infected_male_percent = r.male.percentage;
-                                            }));
-                                    dead.ifPresent(d -> d.data.stream()
-                                            .filter(x -> x.section.equals(section) && x.period.equals(period)).findFirst()
-                                            .ifPresent(r -> {
-                                                row.dead_female_amount = r.female.amount;
-                                                row.dead_female_percent = r.female.percentage;
-                                                row.dead_male_amount = r.male.amount;
-                                                row.dead_male_percent = r.male.percentage;
-                                            }));
-                                    breathe.ifPresent(d -> d.data.stream()
-                                            .filter(x -> x.section.equals(section) && x.period.equals(period)).findFirst()
-                                            .ifPresent(r -> {
-                                                row.breathe_female_amount = r.female.amount;
-                                                row.breathe_female_percent = r.female.percentage;
-                                                row.breathe_male_amount = r.male.amount;
-                                                row.breathe_male_percent = r.male.percentage;
-                                            }));
-                                    severe.ifPresent(d -> d.data.stream()
-                                            .filter(x -> x.section.equals(section) && x.period.equals(period)).findFirst()
-                                            .ifPresent(r -> {
-                                                row.severe_female_amount = r.female.amount;
-                                                row.severe_female_percent = r.female.percentage;
-                                                row.severe_male_amount = r.male.amount;
-                                                row.severe_male_percent = r.male.percentage;
-                                            }));
+                                    infected.flatMap(d -> d.data.stream()
+                                            .filter(x -> x.section.equals(section) && x.period.equals(period))
+                                            .findFirst()).ifPresent(r -> {
+                                        row.infected_female_amount = r.female.amount;
+                                        row.infected_female_percent = r.female.percentage;
+                                        row.infected_male_amount = r.male.amount;
+                                        row.infected_male_percent = r.male.percentage;
+                                    });
+                                    dead.flatMap(d -> d.data.stream()
+                                            .filter(x -> x.section.equals(section) && x.period.equals(period))
+                                            .findFirst()).ifPresent(r -> {
+                                        row.dead_female_amount = r.female.amount;
+                                        row.dead_female_percent = r.female.percentage;
+                                        row.dead_male_amount = r.male.amount;
+                                        row.dead_male_percent = r.male.percentage;
+                                    });
+                                    breathe.flatMap(d -> d.data.stream()
+                                            .filter(x -> x.section.equals(section) && x.period.equals(period))
+                                            .findFirst()).ifPresent(r -> {
+                                        row.breathe_female_amount = r.female.amount;
+                                        row.breathe_female_percent = r.female.percentage;
+                                        row.breathe_male_amount = r.male.amount;
+                                        row.breathe_male_percent = r.male.percentage;
+                                    });
+                                    severe.flatMap(d -> d.data.stream()
+                                            .filter(x -> x.section.equals(section) && x.period.equals(period))
+                                            .findFirst()).ifPresent(r -> {
+                                        row.severe_female_amount = r.female.amount;
+                                        row.severe_female_percent = r.female.percentage;
+                                        row.severe_male_amount = r.male.amount;
+                                        row.severe_male_percent = r.male.percentage;
+                                    });
                                 }
                             }
                         }
@@ -120,7 +120,10 @@ public class collate {
 
         CsvMapper csvMapper = new CsvMapper();
         CsvSchema schema = csvMapper.schemaFor(Row.class).withHeader();
-        csvMapper.writerFor(outputType).with(schema).writeValues(Paths.get("indicies-by-age-and-sex.csv").toFile());
+        csvMapper.writerFor(outputType)
+                .with(schema)
+                .writeValues(Paths.get("indicies-by-age-and-sex.csv").toFile())
+                .write(table);
     }
 
     public static class DataSet {
