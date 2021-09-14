@@ -118,8 +118,9 @@ public class collate {
                         }
                 );
 
-        CsvSchema schema = new CsvMapper().schemaFor(Row.class).withHeader();
-        System.out.println(new CsvMapper().writerFor(outputType).with(schema).writeValueAsString(table));
+        CsvMapper csvMapper = new CsvMapper();
+        CsvSchema schema = csvMapper.schemaFor(Row.class).withHeader();
+        csvMapper.writerFor(outputType).with(schema).writeValues(Paths.get("indicies-by-age-and-sex.csv").toFile());
     }
 
     public static class DataSet {
