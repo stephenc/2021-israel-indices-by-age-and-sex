@@ -13,6 +13,6 @@ do
 		continue
 	fi
 	jq -S -r '.[0].data | . | map(. + {capture_date_time:"'"$CAPTURE_TS"'"})' $file 
-done | jq -s -r 'add | (map(keys) | add | unique ) as $cols | map(. as $row | $cols | sort | map($row[.])) as $rows | $cols , $rows[] | @csv' > vaccinated-verified-by-age.csv
+done | jq -s -r 'add | (map(keys) | add | unique ) as $cols | map(. as $row | $cols | sort | map($row[.])) as $rows | $cols , $rows[] | @csv' > indicies-by-age-and-sex.csv
 
 git add indicies-by-age-and-sex.csv
