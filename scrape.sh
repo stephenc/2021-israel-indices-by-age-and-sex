@@ -18,7 +18,7 @@ curl -fsSL 'https://datadashboardapi.health.gov.il/api/queries/_batch' \
     -H 'Accept: application/json' \
     --compressed \
     -H 'Content-Type: application/json' \
-    --data-raw '{"requests":[{"id":"0","queryName":"infectedByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"1","queryName":"deadByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"0","queryName":"breatheByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"0","queryName":"severeByPeriodAndAgeAndGender","single":false,"parameters":{}}]}' \
+    --data-raw '{"requests":[{"id":"0","queryName":"infectedByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"1","queryName":"deadByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"2","queryName":"breatheByPeriodAndAgeAndGender","single":false,"parameters":{}},{"id":"3","queryName":"severeByPeriodAndAgeAndGender","single":false,"parameters":{}}]}' \
     > tmp.json
 
 >&2 echo "[INFO] Scraped data:"
