@@ -9,7 +9,7 @@ This GitHub repo captures the various indices by age and gender data backing the
 The raw data is in the [data](./data) directory as JSON files.
 The data dashboard is currently polled once per hour for new data.
 
-Data from 2021-05-05 through to 2021-09-12 was manually downloaded from the dashboard using the XSLX download functionality by Oded and then converted using the [xslxtjson](./xlsx2json.java) script. The raw files are in [manual](/.manual)
+Data from 2021-05-05 through to 2021-09-12 was manually downloaded from the dashboard using the XSLX download functionality by Oded and then converted using the [xslx2json](./xlsx2json.java) script. The raw files are in [manual](/.manual)
 
 ## Aggregated Data
 
