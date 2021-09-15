@@ -45,6 +45,7 @@ public class collate {
         ObjectMapper mapper = new ObjectMapper();
         List<Row> table = new ArrayList<>();
         Files.list(Paths.get("data"))
+                .sorted()
                 .forEach(p -> {
                             Matcher matcher = fileNamePattern.matcher(p.getFileName().toString());
                             if (!matcher.matches()) {
@@ -84,34 +85,50 @@ public class collate {
                                     infected.flatMap(d -> d.data.stream()
                                             .filter(x -> x.section.equals(section) && x.period.equals(period))
                                             .findFirst()).ifPresent(r -> {
-                                        row.infected_female_amount = r.female.amount;
-                                        row.infected_female_percent = r.female.percentage;
-                                        row.infected_male_amount = r.male.amount;
-                                        row.infected_male_percent = r.male.percentage;
+                                        if (r.female != null) {
+                                            row.infected_female_amount = r.female.amount;
+                                            row.infected_female_percent = r.female.percentage;
+                                        }
+                                        if (r.male != null) {
+                                            row.infected_male_amount = r.male.amount;
+                                            row.infected_male_percent = r.male.percentage;
+                                        }
                                     });
                                     dead.flatMap(d -> d.data.stream()
                                             .filter(x -> x.section.equals(section) && x.period.equals(period))
                                             .findFirst()).ifPresent(r -> {
-                                        row.dead_female_amount = r.female.amount;
-                                        row.dead_female_percent = r.female.percentage;
-                                        row.dead_male_amount = r.male.amount;
-                                        row.dead_male_percent = r.male.percentage;
+                                        if (r.female != null) {
+                                            row.dead_female_amount = r.female.amount;
+                                            row.dead_female_percent = r.female.percentage;
+                                        }
+                                        if (r.male != null) {
+                                            row.dead_male_amount = r.male.amount;
+                                            row.dead_male_percent = r.male.percentage;
+                                        }
                                     });
                                     breathe.flatMap(d -> d.data.stream()
                                             .filter(x -> x.section.equals(section) && x.period.equals(period))
                                             .findFirst()).ifPresent(r -> {
-                                        row.breathe_female_amount = r.female.amount;
-                                        row.breathe_female_percent = r.female.percentage;
-                                        row.breathe_male_amount = r.male.amount;
-                                        row.breathe_male_percent = r.male.percentage;
+                                        if (r.female != null) {
+                                            row.breathe_female_amount = r.female.amount;
+                                            row.breathe_female_percent = r.female.percentage;
+                                        }
+                                        if (r.male != null) {
+                                            row.breathe_male_amount = r.male.amount;
+                                            row.breathe_male_percent = r.male.percentage;
+                                        }
                                     });
                                     severe.flatMap(d -> d.data.stream()
                                             .filter(x -> x.section.equals(section) && x.period.equals(period))
                                             .findFirst()).ifPresent(r -> {
-                                        row.severe_female_amount = r.female.amount;
-                                        row.severe_female_percent = r.female.percentage;
-                                        row.severe_male_amount = r.male.amount;
-                                        row.severe_male_percent = r.male.percentage;
+                                        if (r.female != null) {
+                                            row.severe_female_amount = r.female.amount;
+                                            row.severe_female_percent = r.female.percentage;
+                                        }
+                                        if (r.male != null) {
+                                            row.severe_male_amount = r.male.amount;
+                                            row.severe_male_percent = r.male.percentage;
+                                        }
                                     });
                                 }
                             }
