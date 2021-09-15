@@ -16,10 +16,15 @@ import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -61,6 +66,23 @@ public class xlsx2json {
     public static void main(String... args) throws Exception {
         Pattern fileNamePattern =
                 Pattern.compile("^.*age\\s+(\\d+)[.](\\d+)[.](\\d+)\\s+\\((\\d+)(am|pm)\\).*xlsx$");
+        Map<String, String> sectionFix = new HashMap<>();
+        sectionFix.put("0-", "0-9");
+        sectionFix.put("10", "10-19");
+        sectionFix.put("20", "20-29");
+        sectionFix.put("30", "30-39");
+        sectionFix.put("40", "40-49");
+        sectionFix.put("50", "50-59");
+        sectionFix.put("60", "60-69");
+        sectionFix.put("70", "70-79");
+        sectionFix.put("80", "80-89");
+        sectionFix.put("90", "90+");
+        Set<String> sectionDrop = new HashSet<>();
+        sectionDrop.add("10-11");
+        sectionDrop.add("12-15");
+        sectionDrop.add("16-19");
+        sectionDrop.add("70-74");
+        sectionDrop.add("75+");
 
         Files.list(Paths.get("manual")).forEach(path -> {
             String readFileName = path.toString();
@@ -187,6 +209,10 @@ public class xlsx2json {
                         default:
                             String period = row.getCell(periodCol).getStringCellValue();
                             String section = row.getCell(sectionCol).getStringCellValue();
+                            section = sectionFix.getOrDefault(section, section);
+                            if (sectionDrop.contains(section)) {
+                                break;
+                            }
                             String sex = row.getCell(sexCol).getStringCellValue();
                             boolean female = SEX_FEMALE.equals(sex);
                             if (infectedAmountCol != null && infectedPercentCol != null) {
@@ -279,6 +305,7 @@ public class xlsx2json {
                 System.out.printf("Writing %s to %s%n", readFileName, outputFile);
                 new ObjectMapper().writeValue(new File(outputFile),
                         Arrays.asList(infecteds, deaths, breathes, severes));
+                System.out.println(infecteds.data.stream().map(x -> x.section).distinct().collect(Collectors.toList()));
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
