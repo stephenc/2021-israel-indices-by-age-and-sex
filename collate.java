@@ -215,5 +215,160 @@ public class collate {
         public Long severe_male_amount;
         @JsonProperty
         public Double severe_male_percent;
+
+        // These generated columns can be helpful for determining what the percentages originate from
+//
+//        @JsonProperty
+//        public Long infected_female_guestimate_population() {
+//            if (infected_female_percent != null && infected_female_percent > 0.1 && infected_female_amount != null
+//                    && infected_female_amount > 10) {
+//                return Math.round(infected_female_amount / infected_female_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long infected_female_guestimate_population_stderr() {
+//            if (infected_female_percent != null && infected_female_percent > 0.1 && infected_female_amount != null
+//                    && infected_female_amount > 10) {
+//                return Math.round((infected_female_amount / (infected_female_percent - 0.05) * 100 -
+//                        infected_female_amount / (infected_female_percent + 0.05) * 100)/2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long dead_female_guestimate_population() {
+//            if (dead_female_percent != null && dead_female_percent > 0.1 && dead_female_amount != null
+//                    && dead_female_amount > 10) {
+//                return Math.round(dead_female_amount / dead_female_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long dead_female_guestimate_population_stderr() {
+//            if (dead_female_percent != null && dead_female_percent > 0.1 && dead_female_amount != null
+//                    && dead_female_amount > 10) {
+//                return Math.round((dead_female_amount / (dead_female_percent - 0.05) * 100 -
+//                        dead_female_amount / (dead_female_percent + 0.05) * 100)/2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long breathe_female_guestimate_population() {
+//            if (breathe_female_percent != null && breathe_female_percent > 0.1 && breathe_female_amount != null
+//                    && breathe_female_amount > 10) {
+//                return Math.round(breathe_female_amount / breathe_female_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long breathe_female_guestimate_population_stderr() {
+//            if (breathe_female_percent != null && breathe_female_percent > 0.1 && breathe_female_amount != null
+//                    && breathe_female_amount > 10) {
+//                return Math.round((breathe_female_amount / (breathe_female_percent - 0.05) * 100 -
+//                        breathe_female_amount / (breathe_female_percent + 0.05) * 100) / 2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long severe_female_guestimate_population() {
+//            if (severe_female_percent != null && severe_female_percent > 0.1 && severe_female_amount != null
+//                    && severe_female_amount > 10) {
+//                return Math.round(severe_female_amount / severe_female_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long severe_female_guestimate_population_stderr() {
+//            if (severe_female_percent != null && severe_female_percent > 0.1 && severe_female_amount != null
+//                    && severe_female_amount > 10) {
+//                return Math.round((severe_female_amount / (severe_female_percent - 0.05) * 100 -
+//                        severe_female_amount / (severe_female_percent + 0.05) * 100) / 2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long infected_male_guestimate_population() {
+//            if (infected_male_percent != null && infected_male_percent > 0.1 && infected_male_amount != null
+//                    && infected_male_amount > 10) {
+//                return Math.round(infected_male_amount / infected_male_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long infected_male_guestimate_population_stderr() {
+//            if (infected_male_percent != null && infected_male_percent > 0.1 && infected_male_amount != null
+//                    && infected_male_amount > 10) {
+//                return Math.round((infected_male_amount / (infected_male_percent - 0.05) * 100 -
+//                        infected_male_amount / (infected_male_percent + 0.05) * 100)/2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long dead_male_guestimate_population() {
+//            if (dead_male_percent != null && dead_male_percent > 0.1 && dead_male_amount != null
+//                    && dead_male_amount > 10) {
+//                return Math.round(dead_male_amount / dead_male_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long dead_male_guestimate_population_stderr() {
+//            if (dead_male_percent != null && dead_male_percent > 0.1 && dead_male_amount != null
+//                    && dead_male_amount > 10) {
+//                return Math.round((dead_male_amount / (dead_male_percent - 0.05) * 100 -
+//                        dead_male_amount / (dead_male_percent + 0.05) * 100)/2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long breathe_male_guestimate_population() {
+//            if (breathe_male_percent != null && breathe_male_percent > 0.1 && breathe_male_amount != null
+//                    && breathe_male_amount > 10) {
+//                return Math.round(breathe_male_amount / breathe_male_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long breathe_male_guestimate_population_stderr() {
+//            if (breathe_male_percent != null && breathe_male_percent > 0.1 && breathe_male_amount != null
+//                    && breathe_male_amount > 10) {
+//                return Math.round((breathe_male_amount / (breathe_male_percent - 0.05) * 100 -
+//                        breathe_male_amount / (breathe_male_percent + 0.05) * 100) / 2);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long severe_male_guestimate_population() {
+//            if (severe_male_percent != null && severe_male_percent > 0.1 && severe_male_amount != null
+//                    && severe_male_amount > 10) {
+//                return Math.round(severe_male_amount / severe_male_percent * 100);
+//            }
+//            return null;
+//        }
+//
+//        @JsonProperty
+//        public Long severe_male_guestimate_population_stderr() {
+//            if (severe_male_percent != null && severe_male_percent > 0.1 && severe_male_amount != null
+//                    && severe_male_amount > 10) {
+//                return Math.round((severe_male_amount / (severe_male_percent - 0.05) * 100 -
+//                        severe_male_amount / (severe_male_percent + 0.05) * 100) / 2);
+//            }
+//            return null;
+//        }
+
     }
 }

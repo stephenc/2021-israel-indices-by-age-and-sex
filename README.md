@@ -36,3 +36,9 @@ Our current best understanding of the columns is:
 * `severe_female_percent` is the percentage of females in the age group classified severe during the period
 * `severe_male_amount` is the number of males in the age group classified severe during the period
 * `severe_male_percent` is the percentage of males in the age group classified severe during the period
+                             
+### Percentage columns
+
+Our current understanding of the percentage columns is that the percentage is of the total in each category across all age groups over the indicated time period.
+
+For example, the `all time` amounts for ventilation (`breath_female_amount` and `breath_male_amount`) on 2021-09-15 add up to `4334` and using this value you can reconstruct the percentages (i.e. `breath_female_percent[2021-09-15] = breath_female_amount[2021-09-15] / 4334 * 100`) 
