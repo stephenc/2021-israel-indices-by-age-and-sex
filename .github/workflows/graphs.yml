@@ -13,7 +13,7 @@
 #   limitations under the License.
 #
 
-name: Graph
+name: Graphs
 on:
   workflow_dispatch:
   schedule:
@@ -35,8 +35,8 @@ jobs:
           java-version: 11.0.11.hs-adpt
           jdkFile: ${{ steps.sdkman.outputs.file }}
       - run: curl -Ls https://sh.jbang.dev | bash -s - app setup && echo "/home/runner/.jbang/bin" >> $GITHUB_PATH && rm -f hook_post_*.sh
-      - name: Graph
-        run: ./graph.java
+      - name: Graphs
+        run: ./graphs.java
         env:
           JBANG_REPO: /home/runner/.jbang/repository
       - run: git add graphs
