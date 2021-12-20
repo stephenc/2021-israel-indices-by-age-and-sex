@@ -41,40 +41,54 @@ public class graphs {
         for (String period : periods) {
             List<Row> data = rows.stream().filter(r -> period.equals(r.period)).collect(Collectors.toList());
 
-            makeGraphs(data, String.format("./graphs/infected_female_amount_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/infected_female_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Infected females for the period " + period, "Amount", r -> r.infected_female_amount);
-            makeGraphs(data, String.format("./graphs/infected_female_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/infected_female_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Infected females for the period " + period, "Percentage", r -> r.infected_female_percent);
-            makeGraphs(data, String.format("./graphs/infected_male_amount_%s.png", period),
+            makeGraphs(data, String.format("./graphs/infected_male_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Infected males for the period " + period, "Amount", r -> r.infected_male_amount);
-            makeGraphs(data, String.format("./graphs/infected_male_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/infected_male_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Infected males for the period " + period, "Percentage", r -> r.infected_male_percent);
 
-            makeGraphs(data, String.format("./graphs/dead_female_amount_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/dead_female_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Female deaths for the period " + period, "Amount", r -> r.dead_female_amount);
-            makeGraphs(data, String.format("./graphs/dead_female_percent_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/dead_female_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Female deaths for the period " + period, "Percentage", r -> r.dead_female_percent);
-            makeGraphs(data, String.format("./graphs/dead_male_amount_%s.png", period),
+            makeGraphs(data, String.format("./graphs/dead_male_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Male deaths for the period " + period, "Amount", r -> r.dead_male_amount);
-            makeGraphs(data, String.format("./graphs/dead_male_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/dead_male_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Male deaths for the period " + period, "Percentage", r -> r.dead_male_percent);
 
-            makeGraphs(data, String.format("./graphs/breathe_female_amount_%s.png", period),
+            makeGraphs(data, String.format("./graphs/breathe_female_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Females on ventilation for the period " + period, "Amount", r -> r.breathe_female_amount);
-            makeGraphs(data, String.format("./graphs/breathe_female_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/breathe_female_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Females on ventilation for the period " + period, "Percentage", r -> r.breathe_female_percent);
-            makeGraphs(data, String.format("./graphs/breathe_male_amount_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/breathe_male_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Males on ventilation for the period " + period, "Amount", r -> r.breathe_male_amount);
-            makeGraphs(data, String.format("./graphs/breathe_male_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/breathe_male_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Males on ventilation for the period " + period, "Percentage", r -> r.breathe_male_percent);
 
-            makeGraphs(data, String.format("./graphs/severe_female_amount_%s.png", period),
+            makeGraphs(data, String.format("./graphs/severe_female_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Females classified severe for the period " + period, "Amount", r -> r.severe_female_amount);
-            makeGraphs(data, String.format("./graphs/severe_female_percent_%s.png", period),
+            makeGraphs(data, String.format("./graphs/severe_female_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]",
+                            "_")),
                     "Females classified severe for the period " + period, "Percentage", r -> r.severe_female_percent);
-            makeGraphs(data, String.format("./graphs/severe_male_amount_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/severe_male_amount_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Males classified severe for the period " + period, "Amount", r -> r.severe_male_amount);
-            makeGraphs(data, String.format("./graphs/severe_male_percent_%s.png", period),
+            makeGraphs(data,
+                    String.format("./graphs/severe_male_percent_%s.png", period.replaceAll("[^a-zA-Z0-9]", "_")),
                     "Males classified severe for the period " + period, "Percentage", r -> r.severe_male_percent);
 
 
