@@ -14,6 +14,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -57,19 +59,25 @@ public class collate {
                             try {
                                 value = mapper.readValue(p.toFile(), dataSetsType);
                             } catch (IOException e) {
-                                throw new UncheckedIOException(e);
+                                throw new UncheckedIOException("Could not parse " + p, e);
                             }
-                            Optional<DataSet> infected = value.stream().filter(s -> "0".equals(s.id)).findFirst();
-                            Optional<DataSet> dead = value.stream().filter(s -> "1".equals(s.id)).findFirst();
-                            Optional<DataSet> breathe = value.stream().filter(s -> "2".equals(s.id)).findFirst();
-                            Optional<DataSet> severe = value.stream().filter(s -> "3".equals(s.id)).findFirst();
+                            Optional<DataSet> infected = value.stream().filter(s -> "0".equals(s.id))
+                                    .filter(hasData(p, "infected")).findFirst();
+                            Optional<DataSet> dead = value.stream().filter(s -> "1".equals(s.id))
+                                    .filter(hasData(p, "dead")).findFirst();
+                            Optional<DataSet> breathe = value.stream().filter(s -> "2".equals(s.id))
+                                    .filter(hasData(p, "breathe")).findFirst();
+                            Optional<DataSet> severe = value.stream().filter(s -> "3".equals(s.id))
+                                    .filter(hasData(p, "severe")).findFirst();
                             List<String> sections = value.stream()
+                                    .filter(s -> s.data != null)
                                     .flatMap(s -> s.data.stream())
                                     .map(x -> x.section)
                                     .distinct()
                                     .sorted()
                                     .collect(Collectors.toList());
                             List<String> periods = value.stream()
+                                    .filter(s -> s.data != null)
                                     .flatMap(s -> s.data.stream())
                                     .map(x -> x.period)
                                     .distinct()
@@ -143,11 +151,28 @@ public class collate {
                 .write(table);
     }
 
+    private static Predicate<DataSet> hasData(Path p, String set) {
+        return d -> {
+            if (d.data != null) {
+                return true;
+            }
+            if (d.error != null) {
+                System.err.printf("WARNING! %s is missing %s data, cause: %s: %s%n", p, set, d.error.name,
+                        d.error.message);
+            } else {
+                System.err.printf("WARNING! %s is missing %s data, cause unknown%n", p, set);
+            }
+            return false;
+        };
+    }
+
     public static class DataSet {
         @JsonProperty
         public String id;
         @JsonProperty
         public List<DataPoint> data;
+        @JsonProperty
+        public DataError error;
     }
 
     public static class DataPoint {
@@ -169,6 +194,13 @@ public class collate {
         public long amount;
         @JsonProperty
         public double percentage;
+    }
+
+    public static class DataError {
+        @JsonProperty
+        public String message;
+        @JsonProperty
+        public String name;
     }
 
     @JsonPropertyOrder({
