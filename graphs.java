@@ -108,6 +108,7 @@ public class graphs {
                 .yAxisTitle(yAxisTitle)
                 .title(title)
                 .build();
+        chart.getStyler().setDatePattern("dd-MMM-yyyy");
         List<String> ageGroups = data.stream().map(r -> r.age_group).distinct().collect(Collectors.toList());
 
         for (String ageGroup : ageGroups) {
