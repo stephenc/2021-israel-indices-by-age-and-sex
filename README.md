@@ -42,3 +42,74 @@ Our current best understanding of the columns is:
 Our current understanding of the percentage columns is that the percentage is of the total in each category across all age groups over the indicated time period.
 
 For example, the `all time` amounts for ventilation (`breath_female_amount` and `breath_male_amount`) on 2021-09-15 add up to `4334` and using this value you can reconstruct the percentages (i.e. `breath_female_percent[2021-09-15] = breath_female_amount[2021-09-15] / 4334 * 100`) 
+
+## Graphs
+
+Once a week graphs are automatically generated from the collated data. 
+Below is a sample of the graphs available.
+
+### Infected
+
+#### As numerical count
+
+![graph](graphs/infected_female_amount_all_time.png)
+
+![graph](graphs/infected_male_amount_all_time.png)
+
+![graph](graphs/infected_female_amount_last_month.png)
+
+![graph](graphs/infected_male_amount_last_month.png)
+
+#### As percentage
+
+![graph](graphs/infected_female_percent_all_time.png)
+
+![graph](graphs/infected_male_percent_all_time.png)
+
+![graph](graphs/infected_female_percent_last_month.png)
+
+![graph](graphs/infected_male_percent_last_month.png)
+
+### Deaths
+
+#### As numerical count
+
+![graph](graphs/dead_female_amount_all_time.png)
+
+![graph](graphs/dead_male_amount_all_time.png)
+
+![graph](graphs/dead_female_amount_last_month.png)
+
+![graph](graphs/dead_male_amount_last_month.png)
+
+#### As percentage
+
+![graph](graphs/dead_female_percent_all_time.png)
+
+![graph](graphs/dead_male_percent_all_time.png)
+
+![graph](graphs/dead_female_percent_last_month.png)
+
+![graph](graphs/dead_male_percent_last_month.png)
+
+### On ventilation
+
+#### As numerical count
+
+![graph](graphs/breathe_female_amount_all_time.png)
+
+![graph](graphs/breathe_male_amount_all_time.png)
+
+![graph](graphs/breathe_female_amount_last_month.png)
+
+![graph](graphs/breathe_male_amount_last_month.png)
+
+#### As percentage
+
+![graph](graphs/breathe_female_percent_all_time.png)
+
+![graph](graphs/breathe_male_percent_all_time.png)
+
+![graph](graphs/breathe_female_percent_last_month.png)
+
+![graph](graphs/breathe_male_percent_last_month.png)
